@@ -1,18 +1,18 @@
-# GenderWageRegression
-Repository for Gender Wage Regression Project
+# GenderWageInteractionEffectRegression
+Repository for Gender Wage Interaction Effect Regression Project
 
 
 ## Summary
-This project was completed during my master's degree at the University of Pennsylvania for a course called Applied Linear Modelling. I use publicly available data to build a mediation effects regression model that details the effects of gender and wages. While controlling for other variables I show there is a statistically significant mediation effect where males working in high paying industries such as finance and technology earn more than womenwhile controlling for education and age.
+This was a project I designed and completed during my master's degree at the University of Pennsylvania for a course called Applied Linear Modelling. I use publicly available data to build an interaction effects multivariate regression model that details the effects of gender on weekly wages. While controlling for other variables I show there is a statistically significant interaction effect where males working in high paying industries such as finance and technology earn more than women while controlling for education and age.
 
 ### Research Question
-
+Are men's weekly earning's higher than women when controlling for some wage influencing variables such as; age, working in a high paying industry, and education? If so, is there an interaction effect between being male and working in the high paying industries?
 
 ### Walkthrough
 
 - Data cleaning and set up
 - Base model creation and assumption corrections
-- Mediation effect model creation 
+- Interaction effect model creation 
 - Results
 
 
@@ -94,7 +94,7 @@ Now that the normality of residuals assumption is corrected I look at whether or
 
 ![](https://github.com/cody-little/GenderWageRegression/blob/master/homoscedcheckplot.png)
 
-### Mediation Effects Model Creation
+### Interaction Effects Model Creation
 
 Now that the original model specifications have been adddressed by correcting any assumptions which were violated I moved on to create the mediation effects model. This equation is the same as the base model but includes an interaction term. The interaction term is the effect of being both male and working in the high paying industries. This interaction effect gives us the ability to calculate how much of the additional money men earn found in the base model can be attributed to the fact that they are males working in these high paying industries by using the model estimates. Below is an updated equation in both text and R syntax along with the regression table results.
 
@@ -117,3 +117,4 @@ maleindus    101.5245    23.8930   4.2491        0
 
 ### Results
 
+The model results show that the interaction effect is statistically significant and has an estimate of about $101.5 dollars. This interaction effect helps us to understand how much of that additional weekly income in the gender variable estimate can be attributed to being both male and in a high paying industry. When gender is a male a respondent to the ASEC can expect to earn that additional amount if they work in a high paying industry compared to a female. Given this analysis we can confidently answer our research question. Yes, men earn more than women when controlling for variables such as education, age, and working in a high paying industry, and also Yes there is an additional interaction effect for the relationship of being male and working in a high paying industry leading to an increased gender wage gap amond the ASEC respondents.
