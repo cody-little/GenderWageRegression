@@ -64,4 +64,23 @@ To check linearity I plotted the continuous variables to the weekly earning vari
 model_base <- lm(weekearn ~ gender + AGE + AGE2 + degree + industry, data = data)
 
 round(summary(model_base)$coeff, digits =4)
+
+             Estimate Std. Error  t value Pr(>|t|)
+(Intercept) -967.6835    42.7905 -22.6144        0
+gender       336.8392    10.4569  32.2122        0
+AGE           69.2811     2.0618  33.6023        0
+AGE2          -0.6987     0.0231 -30.2766        0
+degree       570.9451    10.9066  52.3487        0
+industry     181.2786    13.3861  13.5423        0
 ```
+All of the variables are statistically significant and we can see that the gender estimate indicates men earn about $336 dollars more per week on average when controlling for all other variables. We can also see the age squared estimate is helping to address that quadratic relationship mathematically corroborating the decision to add the squared term. The next step in this analysis is to see if the residuals from the model are normal, and if there is heteroscedasticity. To do this I used a Q-Q plot which plots two quantiles against eachother and then I added a linear best fit line to see what normal should be. The Q-Q plot did show that there was a lack of normalitity among residuals. To correct this I removed outliers from the data set using a cooks distance formula. 
+
+```
+outliers$cd <- cooks.distance(model_base)
+plot(outliers$cd,xlab="Index",ylab="cooks distance",pch=19,main = "Outlier Analysis")
+abline(h=5/12804, col="red")
+data2<-subset(outliers, cd <5/12804 )
+```
+
+The cooks distance essentially shows the effect each observation has on a fitted value, which means we can identify outliers which throw off the residuals and lead to a more poor model fit. Calculating cooks distance in R is shown above. I used 5/12,804 because there are five variables in the model, and there are 12,804 observations in the data set. This gives a threshold that we can remove any observations lying above it. Below is a plot demonstrating how this looks conceptually using this data.
+
