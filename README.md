@@ -2,8 +2,8 @@
 Repository for Gender Wage Regression Project
 
 
-## Sumarry
-This project was completed during my master's degree at the University of Pennsylvania for a course called Applied Linear Modelling. I use publicly available data to build a mediation effects regression model that details the effects of gender and wages. While controlling for other variables I show there is a statistically significant mediation effect where males working in high paying industries such as finance and technology earn more while controlling for education and age.
+## Summary
+This project was completed during my master's degree at the University of Pennsylvania for a course called Applied Linear Modelling. I use publicly available data to build a mediation effects regression model that details the effects of gender and wages. While controlling for other variables I show there is a statistically significant mediation effect where males working in high paying industries such as finance and technology earn more than womenwhile controlling for education and age.
 
 ### Research Question
 
@@ -85,3 +85,7 @@ data2<-subset(outliers, cd <5/12804 )
 The cooks distance essentially shows the effect each observation has on a fitted value, which means we can identify outliers which throw off the residuals and lead to a more poor model fit. Calculating cooks distance in R is shown above. I used 5/12,804 because there are five variables in the model, and there are 12,804 observations in the data set. This gives a threshold that we can remove any observations lying above it. Below is a plot demonstrating how this looks conceptually using this data.
 
 ![](https://github.com/cody-little/GenderWageRegression/blob/master/outlieranalysis.png)
+
+Below we can see how the method of cooks distance for outlier analysis can create a more robust normality among the residuals leading to a better model fit. By removing these observations we essentially remove the residuals which draw our line upwards towards the top end. 
+
+
