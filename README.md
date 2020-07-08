@@ -88,4 +88,9 @@ The cooks distance essentially shows the effect each observation has on a fitted
 
 Below we can see how the method of cooks distance for outlier analysis can create a more robust normality among the residuals leading to a better model fit. By removing these observations we essentially remove the residuals which draw our line upwards towards the top end. 
 
+![](https://github.com/cody-little/GenderWageRegression/blob/master/residualsnormality.PNG)
+
+Now that the normality of residuals assumption is corrected I look at whether or not the errors are homoscedastic. This means that variance across the residuals is about the same. Using a plot of the residuals with a straight line and loess line gives us a quick way to check for this assumption. Below is the syntax and output for this plot that I used. 
+
+
 
