@@ -90,7 +90,30 @@ Below we can see how the method of cooks distance for outlier analysis can creat
 
 ![](https://github.com/cody-little/GenderWageRegression/blob/master/residualsnormality.PNG)
 
-Now that the normality of residuals assumption is corrected I look at whether or not the errors are homoscedastic. This means that variance across the residuals is about the same. Using a plot of the residuals with a straight line and loess line gives us a quick way to check for this assumption. Below is the syntax and output for this plot that I used. 
+Now that the normality of residuals assumption is corrected I look at whether or not the errors are homoscedastic. This means that variance across the residuals is about the same. Using a plot of the residuals with a straight line and loess line gives us a quick way to check for this assumption. Below is the syntax and output for this plot that I used. There is very little deviation between the lines which means our assumption of homoscedasticity is okay and we can move forward. 
 
+![](https://github.com/cody-little/GenderWageRegression/blob/master/homoscedcheckplot.png)
 
+### Mediation Effects Model Creation
+
+Now that the original model specifications have been adddressed by correcting any assumptions which were violated I moved on to create the mediation effects model. This equation is the same as the base model but includes an interaction term. The interaction term is the effect of being both male and working in the high paying industries. This interaction effect gives us the ability to calculate how much of the additional money men earn found in the base model can be attributed to the fact that they are males working in these high paying industries by using the model estimates. Below is an updated equation in both text and R syntax along with the regression table results.
+
+γ(weeklyearnings)= β_0+β_1 (Sex/Gender  ismale)+ β_2 (Industry)+ β_3 (Degree)+ β_4 (Age)+β_5 Age(Squared)+β_6 (Male*Industry)+ ε
+
+```
+data2$maleindus <- data2$gender * data2$industry
+model_inter <- lm(weekearn ~ gender + industry + AGE + AGE2 + degree +  maleindus, data = data2)
+###Interaction Effeccts Model Results
+round(summary(model_inter)$coeff, digits =4)
+             Estimate Std. Error  t value Pr(>|t|)
+(Intercept) -970.6975    38.4516 -25.2447        0
+gender       333.0692    10.2066  32.6327        0
+industry     109.7191    16.9874   6.4589        0
+AGE           69.3792     1.8882  36.7440        0
+AGE2          -0.7118     0.0215 -33.1614        0
+degree       533.9085     9.7150  54.9573        0
+maleindus    101.5245    23.8930   4.2491        0
+```
+
+### Results
 
