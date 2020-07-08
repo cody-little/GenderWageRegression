@@ -84,3 +84,4 @@ data2<-subset(outliers, cd <5/12804 )
 
 The cooks distance essentially shows the effect each observation has on a fitted value, which means we can identify outliers which throw off the residuals and lead to a more poor model fit. Calculating cooks distance in R is shown above. I used 5/12,804 because there are five variables in the model, and there are 12,804 observations in the data set. This gives a threshold that we can remove any observations lying above it. Below is a plot demonstrating how this looks conceptually using this data.
 
+![](https://github.com/cody-little/GenderWageRegression/blob/master/outlieranalysis.png)
