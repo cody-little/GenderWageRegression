@@ -48,14 +48,20 @@ Once all of the variables were cleaned I looked at some exploratory analysis thr
 
 ### Base Model Creation and Assumption Corrections
 
-The base model for this analysis is a multivariate linear regression. The goal is to understand the interaction effect of being male and working in the high paying industries I cleaned up in the first phase of the analysis. Below is the actual equation mapped out that I used. 
+The base model for this analysis is a multivariate linear regression. The goal is to understand the interaction effect of being male and working in the high paying industries I cleaned up in the first phase of the analysis. Below is the actual equation mapped out that I used and the regression table results. 
 
 γ(weeklyearnings)= β_0+β_1 (Sex/Gender  is male)+ β_2 (Industry)+ β_3 (Degree)+ β_4 (Age)+  ε
 
-This first model does not contain the interaction effect but I wanted to ensure that it met the assumptions need to create the best linear unbiased estimates. These assumptions include normality of residuls, homoscedasicty, and linearity. By correcting any assumptions we get a better understanding of the relationships between each variable and create a more robust analysis.
 
-*Linearity
+*Linearity*
 
-To check linearity I plotted the continuous variables to the weekly earning variable of interest using a scatter plot and a loess line. The age variable had a hard curved line, as expected when looking at wages. Early career professionals earn less, recieve raises over time. To correct the heavy parabolic curve I squared the variable and included this squared term in the assumption corrected model. Below is an image depicting the before and after plots. 
+To check linearity I plotted the continuous variables to the weekly earning variable of interest using a scatter plot and a loess line. The age variable had a hard curved line, as expected when looking at wages. Early career professionals earn less, recieve raises over time. To correct the heavy parabolic curve I squared the variable and included this squared term in the assumption corrected model. Below is an image depicting the before and after plots. Once this was done I ran the above equation as the base model to get an idea of the statistical results.
 
 
+![](https://github.com/cody-little/GenderWageRegression/blob/master/agecorrectedregress.PNG)
+
+```
+model_base <- lm(weekearn ~ gender + AGE + AGE2 + degree + industry, data = data)
+
+round(summary(model_base)$coeff, digits =4)
+```
